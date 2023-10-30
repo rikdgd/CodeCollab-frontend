@@ -74,9 +74,10 @@ export default function CodeEditor() {
     //     return fileContents;
     // }
     
-    function SetFileContents() {
+    async function SaveFileContents() {
         const editorContents = GetEditorContents();
-        fileService.SetFileContext("test.cs", editorContents);
+        const res = await fileService.SaveFileContext("test.cs", editorContents);
+        console.log(res.data);
     }
     
     
@@ -84,7 +85,7 @@ export default function CodeEditor() {
     return (
         <div>
             <Editor height="800px" width="1400px" defaultLanguage='csharp' defaultValue='//start editing code' onMount={onEditorMount}/>
-            <button onClick={console.log("hello")} className='bg-blue-600 text-white px-2 py-1 rounded-md hover:bg-blue-500'>test</button>
+            <button onClick={SaveFileContents} className='bg-blue-600 text-white px-2 py-1 rounded-md hover:bg-blue-500'>test</button>
         </div>
     );
 } 
