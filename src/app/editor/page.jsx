@@ -30,7 +30,6 @@ export default function CodeEditor() {
         async function fetchData() {
             let fileContents = await fileService.GetFileContext("test.js");
             fileContents = fileContents.data;
-            console.log(fileContents);
             
             SetEditorContents(fileContents)
         }
@@ -76,8 +75,9 @@ export default function CodeEditor() {
     
     async function SaveFileContents() {
         const editorContents = GetEditorContents();
+        console.log('editor contents:', editorContents);
         const res = await fileService.SaveFileContext("test.cs", editorContents);
-        console.log(res.data);
+        console.log('response data:', res.data);
     }
     
     
